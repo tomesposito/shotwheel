@@ -14,7 +14,9 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Spinner />
+        <Image source={require('./resources/background.png')} style={styles.backgroundImage}>
+          <Spinner />
+        </Image>
       </View>
     )
   }
@@ -23,10 +25,18 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backgroundImage: {
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -100,
+    marginLeft: 25,
+  }
 })
 
 Exponent.registerRootComponent(App)

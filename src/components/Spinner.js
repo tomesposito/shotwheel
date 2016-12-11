@@ -1,11 +1,11 @@
 import React from 'react'
-import Button from './Button'
 import {
   StyleSheet,
   Text,
   View,
   Image,
   Animated,
+  TouchableWithoutFeedback,
 } from 'react-native'
 
 export default class Spinner extends React.Component {
@@ -38,15 +38,15 @@ export default class Spinner extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Image style={ styles.pointer } source={ require('../../resources/pointer.png') } />
-        <Animated.View style={ {transform: [{rotate: interpolatedRotateAnimation}]} }>
-          <Image source={ require('../../resources/wheel.png') } />
-        </Animated.View>
-        <Button
-          label='Spin'
-          style={ {marginTop: 50, padding: 30} }
-          type='primary'
-          onPress={ () => { this.startSpin() } } />
+        <View style={styles.spinner}>
+          <Animated.View style={ {transform: [{rotate: interpolatedRotateAnimation}]} }>
+            <Image source={ require('../../resources/wheel.png') } />
+          </Animated.View>
+        </View>
+        <TouchableWithoutFeedback
+          onPress={ () => { this.startSpin() } }>
+          <View style={ styles.button } />
+        </TouchableWithoutFeedback>
       </View>
     )
   }
@@ -55,12 +55,22 @@ export default class Spinner extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  spinner: {
+    marginTop: 199,
+    marginLeft: -30,
   },
   pointer: {
     marginBottom: -10,
     zIndex: 1,
   },
+  button: {
+    height: 100,
+    width: 100,
+    marginTop: 100,
+    marginLeft: -40,
+    backgroundColor: 'transparent'
+  }
 })
