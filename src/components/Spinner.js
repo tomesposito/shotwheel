@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Animated,
+  Easing,
   TouchableWithoutFeedback,
 } from 'react-native'
 
@@ -23,7 +24,8 @@ export default class Spinner extends React.Component {
     
     Animated.timing(this.state.animatedValue, {
       toValue: Math.floor((Math.random() * 600) + newValue),
-      duration: 2000
+      easing: Easing.out(Easing.ease),
+      duration: Math.floor((Math.random() * 3000) + 2000),
     }).start()
   }
 
